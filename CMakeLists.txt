@@ -13,7 +13,36 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+message(STATUS "Fetching ImGui-SFML...")
+
+set(IMGUI_DIR ${imgui_SOURCE_DIR})
+set(IMGUI_SFML_FIND_SFML OFF)
+set(IMGUI_SFML_IMGUI_DEMO ON)
+
+add_executable(main src/main.cpp
+        src/world/World.cpp
+        src/world/World.h
+        src/world/Cell.cpp
+        src/world/Cell.h
+        src/world/cell_types.h
+        src/util/utils.cpp
+        src/world/SolidMovableCell.cpp
+        src/world/SolidMovableCell.h
+        src/world/cells/Sand.cpp
+        src/world/cells/Sand.h
+        src/world/SolidImmovableCell.cpp
+        src/world/SolidImmovableCell.h
+        src/world/cells/Barrier.cpp
+        src/world/cells/Barrier.h
+        src/world/cells/NothingCell.cpp
+        src/world/cells/NothingCell.h
+        src/world/FluidCell.cpp
+        src/world/FluidCell.h
+        src/world/cells/Water.cpp
+        src/world/cells/Water.h
+        src/world/cells/Metal.cpp
+        src/world/cells/Metal.h
+        src/Drawing.cpp)
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 

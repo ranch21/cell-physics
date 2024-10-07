@@ -61,67 +61,6 @@ std::vector<sf::Vector2i> World::shortest_path(sf::Vector2i start, sf::Vector2i 
     return out;
 }
 
-/*void World::draw(sf::RenderWindow& window)
-{
-    sf::RectangleShape cell_shape(sf::Vector2f(1,1));
-    cell_shape.setOrigin(0.5,0.5);
-    int world_size = std::end(this->cells) - std::begin(this->cells);
-    for (int columnid = 0; columnid < world_size; columnid++)
-    {
-        //int16_t start = 0;
-        //int16_t len = 0;
-        //sf::Color prevCol = sf::Color(5,5,5);
-        //sf::Color prevCol2 = sf::Color(5,5,5);
-        for (int cellid = 0; cellid < world_size; cellid++)
-        {
-
-            if (this->cells[columnid][cellid]->color != prevCol)
-            {
-                srand(cellid);
-                len = cellid - start;
-                prevCol = this->cells[columnid][cellid]->color;
-                cell_shape.setPosition(columnid, -start - len);
-                cell_shape.setSize(sf::Vector2f(1,len));
-                start = cellid;
-                cell_shape.setFillColor(sf::Color(rand() % 255, rand()%255, rand()%255));
-                cell_shape.setFillColor(prevCol2);
-                window.draw(cell_shape);
-            }
-            prevCol2 = cells[columnid][cellid]->color;
-            //if (this->cells[columnid][cellid]->type == NOTHING) {continue;}
-        }
-    }
-
-}*/
-
-void World::draw(sf::RenderWindow& window)
-{
-    sf::RectangleShape cell_shape(sf::Vector2f(1,1));
-    cell_shape.setOrigin(0.5,0.5);;
-    for (int columnid = 0; columnid < size.x; columnid++)
-    {
-        for (int cellid = 0; cellid < size.y; cellid++)
-        {
-            if (this->cells[columnid][cellid]->type == NOTHING) {continue;}
-
-            //srand(cellid);
-            cell_shape.setPosition(columnid, -cellid);
-            //cell_shape.setFillColor(sf::Color(rand() % 255, rand()%255, rand()%255));
-            sf::Color color = this->cells[columnid][cellid]->color;
-            //sf::Color color = sf::Color::Black;
-            color.r = std::clamp(color.r + (static_cast<int>(this->cells[columnid][cellid]->temperature) - 22) / 10,0,255);
-            //color.g = std::clamp(color.r - (static_cast<int>(this->cells[columnid][cellid]->temperature) + 22) / 10,0,255);
-            //color.b = std::clamp(color.r - (static_cast<int>(this->cells[columnid][cellid]->temperature) + 22) / 10,0,255);
-            cell_shape.setFillColor(color);
-            window.draw(cell_shape);
-
-
-            //if (this->cells[columnid][cellid]->type == NOTHING) {continue;}
-        }
-    }
-
-}
-
 std::vector<sf::Vector2i> World::surrounding(sf::Vector2i pos)
 {
     std::vector<sf::Vector2i> out;

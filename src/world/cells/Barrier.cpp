@@ -6,11 +6,9 @@
 
 Barrier::Barrier()
 {
-    mass = 9999;
     color = color_offset(sf::Color(20,20,20), 5);
-    type = SOLID_IMMOVABLE;
+    id = BARRIER;
     temperature = 22;
-    heat_conductivity = 0.0f;
 }
 
 void Barrier::step(sf::Vector2i position, World& world)

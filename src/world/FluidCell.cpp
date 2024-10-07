@@ -10,20 +10,23 @@ void FluidCell::update(sf::Vector2i position, World& world)
 {
     transfer_heat(position, world);
     int d = direction * 2 - 1;
-    if (world.get_cell(sf::Vector2i(position.x,position.y-1))->type == NOTHING)
+    if (get_cell_type(world.get_cell(sf::Vector2i(position.x,position.y-1))->id) == NOTHING)
     {
         world.switch_cell(position,sf::Vector2i(position.x,position.y-1));
     } else {
-        bool can_move = world.get_cell(sf::Vector2i(position.x+d,position.y))->type == NOTHING;
-        //bool right = world.get_cell(sf::Vector2i(position.x+1,position.y))->type == NOTHING;
+        bool can_move = get_cell_type(world.get_cell(sf::Vector2i(position.x+d,position.y))->id) == NOTHING;
         if (can_move)
         {
-            world.switch_cell(position,sf::Vector2i(position.x+d,position.y));
+            if (get_cell_type(world.get_cell(sf::Vector2i(position.x+d,position.y-1))->id) == NOTHING) {
+                world.switch_cell(position,sf::Vector2i(position.x+d,position.y-1));
+            } else {
+                world.switch_cell(position,sf::Vector2i(position.x+d,position.y));
+            }
         } else
         {
             direction = !direction;
             d = direction * 2 - 1;
-            can_move = world.get_cell(sf::Vector2i(position.x+d,position.y))->type == NOTHING;
+            can_move = get_cell_type(world.get_cell(sf::Vector2i(position.x+d,position.y))->id) == NOTHING;
             if (can_move)
             {
                 world.switch_cell(position,sf::Vector2i(position.x+d,position.y));

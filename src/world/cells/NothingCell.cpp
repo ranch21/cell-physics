@@ -4,16 +4,17 @@
 
 #include "NothingCell.h"
 
+#include <iostream>
+
 NothingCell::NothingCell()
 {
-    mass = 0;
     color = sf::Color(0,0,0,0);
-    type = NOTHING;
+    id = AIR;
     temperature = 22;
-    heat_conductivity = 0.0f;
 }
 
 
 void NothingCell::update(sf::Vector2i position, World& world)
 {
+
 }

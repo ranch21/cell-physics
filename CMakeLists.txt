@@ -24,7 +24,6 @@ add_executable(main src/main.cpp
         src/world/World.h
         src/world/Cell.cpp
         src/world/Cell.h
-        src/world/cell_types.h
         src/util/utils.cpp
         src/world/SolidMovableCell.cpp
         src/world/SolidMovableCell.h
@@ -42,7 +41,11 @@ add_executable(main src/main.cpp
         src/world/cells/Water.h
         src/world/cells/Metal.cpp
         src/world/cells/Metal.h
-        src/Drawing.cpp)
+        src/Drawing.cpp
+        src/saving.cpp
+        src/world/cell_info.cpp
+        src/world/cell_info.h
+        src/world/cell_info.h)
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 

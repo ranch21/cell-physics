@@ -22,12 +22,11 @@ void Cell::transfer_heat(sf::Vector2i position, World &world) {
             if (dx == 0 && dy == 0) continue;
             Cell* compare_cell = world.get_cell(position + sf::Vector2i(dx, dy));
             if (compare_cell->temperature < temperature) {continue;}
-            float conduct = (compare_cell->heat_conductivity+ heat_conductivity) / 2.0f;
+            float conduct = (get_hconductivity(this->id) + get_hconductivity(compare_cell->id)) / 2.0f;
             float temp_diff = compare_cell->temperature - temperature;
             float heat_transfer = temp_diff * conduct;
             temperature += heat_transfer;
             compare_cell->temperature -= heat_transfer;
-
         }
     }
 }
